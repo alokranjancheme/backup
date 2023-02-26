@@ -1,0 +1,78 @@
+<p>Prerequisite</p>
+<h1>Operating system: </h1>
+<ul>
+<li>It is recommended to use the latest version of Ubuntu from the official <a href="https://www.google.com/url?q=https://ubuntu.com/download/desktop&amp;sa=D&amp;source=editors&amp;ust=1676833972335568&amp;usg=AOvVaw2l9ttmX6vSPfW-WlUDAV6h">website</a>.</li>
+<li>LAMMPS can also be installed on Windows but, to get full control of its features upcoming instruction is about installing LAMMPS from source code</li>
+</ul>
+<h1>Step-wise guide to Install Ubuntu.</h1>
+<ul>
+<li>Go to the official Ubuntu website (https://ubuntu.com/download) and download the latest version of Ubuntu that matches your system's architecture (32-bit or 64-bit).</li>
+<li>Create a bootable USB drive or DVD with the Ubuntu image you downloaded in the previous step. You can use a tool like Rufus (https://rufus.ie/) to create a bootable USB drive or use the built-in tools on your operating system.</li>
+<li>Insert the bootable USB drive or DVD into your computer and restart the system.</li>
+<li>When the system is booting, you should see a screen with the option to boot from the USB drive or DVD. Choose the option that matches your installation media and press Enter.</li>
+<li>The Ubuntu installer will launch. Select your language and click "Install Ubuntu."</li>
+<li>On the next screen, select your keyboard layout and click "Continue."</li>
+<li>On the "Updates and Other Software" screen, you can choose whether to install updates and third-party software during the installation process. It is recommended to select both options. Click "Continue."</li>
+<li>On the "Installation Type" screen, you can choose to install Ubuntu alongside another operating system, erase the entire disk and install Ubuntu, or do a custom installation. Choose the option that suits your needs and click "Install Now."</li>
+<li>Follow the prompts to select your time zone, enter your username and password, and complete the installation.</li>
+<li>Once the installation is complete, remove the installation media and restart your computer.</li>
+</ul>
+<h1>Installing LAMMPS from Source Code.</h1>
+<ul>
+<li>Check out the <a href="https://www.google.com/url?q=https://www.youtube.com/watch?v%3DId3eVPDinDE%26t%3D267s&amp;sa=D&amp;source=editors&amp;ust=1676833972337579&amp;usg=AOvVaw2nuHDAMyArQQOqQ85SwNve">video</a>&nbsp;for detailed instructions</li>
+<li>Open a terminal window in Ubuntu by pressing Ctrl+Alt+T.</li>
+<li>Install the required packages for building LAMMPS by running the following command:</li>
+</ul>
+<ul>
+<li>sudo apt-get update</li>
+<li>sudo apt-get install build-essential git cmake libfftw3-dev libjpeg-dev libpng-dev libtbb-dev libopenmpi-dev</li>
+<li>sudo apt-get install cmake</li>
+<li>sudo apt-get install git</li>
+</ul>
+<ul>
+<li>Clone the LAMMPS repository from GitHub using the following command:</li>
+</ul>
+<ul>
+<li>git clone https://github.com/lammps/lammps.git</li>
+</ul>
+<ul>
+<li>Change to the lammps directory using the following command:</li>
+</ul>
+<ul>
+<li>cd lammps</li>
+</ul>
+<ul>
+<li>Checkout the latest stable version of LAMMPS using the following command:</li>
+</ul>
+<ul>
+<li>git checkout stable</li>
+</ul>
+<ul>
+<li>Create a build directory and change to it using the following commands:</li>
+</ul>
+<ul>
+<li>mkdir build</li>
+<li>cd build</li>
+</ul>
+<ul>
+<li>Configure the LAMMPS build process using ccmake by running the following command:</li>
+<li>ccmake ..</li>
+<li>This command will launch the ccmake interface that allows you to configure the build process. You can use the arrow keys to navigate through the options and the Enter key to select an option.</li>
+<li>In the ccmake interface, you can configure the build options according to your requirements. Some of the important options are:</li>
+<li>CMAKE_BUILD_TYPE: set this option to Release for a faster and optimized build process.</li>
+<li>CMAKE_INSTALL_PREFIX: set this option to the directory where you want to install LAMMPS.</li>
+<li>LAMMPS_MACHINE: set this option to the machine you are building LAMMPS on.</li>
+<li>PKG_USER-OMP: set this option to yes to enable OpenMP support.</li>
+<li>Use the arrow keys to select an option and the Enter key to edit its value. After making changes, press the c key to configure the build process.</li>
+<li>Once the configuration is complete, you can generate the build files by pressing the g key.</li>
+<li>Exit the ccmake interface by pressing the q key.</li>
+<li>Compile LAMMPS using the following command:</li>
+<li>make -jX</li>
+<li>Replace X with the number of CPU cores you want to use for the build process. For example, if you have a quad-core CPU, you can use make -j4.</li>
+<li>Install LAMMPS using the following command:</li>
+<li>make install</li>
+<li>Verify that LAMMPS is installed correctly by running the following command:</li>
+<li>lmp_serial -in ../examples/in.lj</li>
+<li>This command will run a simple Lennard-Jones simulation and print the results to the terminal.</li>
+<li>Congratulations! You have successfully installed LAMMPS from source code</li>
+</ul>
